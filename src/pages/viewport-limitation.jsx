@@ -5,7 +5,7 @@ const ViewportLimitation = ({ children }) => {
   const [isMobile, setIsMobile] = useState(true);
 
   const checkMobileViewport = () => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 1024) {
       setIsMobile(true);
     } else {
       setIsMobile(false);
