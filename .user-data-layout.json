@@ -1,8 +1,8 @@
 {
   "profile": {
-    "nickname": "",
-    "username": "",
-    "password": ""
+    "nickname": "string",
+    "username": "string",
+    "password": "string"
   },
 
   "status": {
@@ -40,7 +40,9 @@
           "active": true,
           "passive": true
         },
-        "exerciseMinutesPerWeek": 150
+        "exercise": {
+          "minutesPerWeek": 150
+        }
       }
     }
   },
@@ -55,6 +57,7 @@
   },
 
   "settings": {
-    "autoShowHealthAnalysisModal": true
+    "autoShowHealthAnalysisModal": true,
+    "enableNotification": true
   }
 }

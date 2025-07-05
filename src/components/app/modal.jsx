@@ -16,7 +16,7 @@ const Modal = ({ title, show, onClose, children }) => {
             <h3 className="text-xl font-semibold">{title}</h3>
             <button onClick={onClose} className="text-xl text-gray-500">&times;</button>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 max-h-120 overflow-y-auto">
             {children}
           </div>
           <div className="mt-4 flex justify-end">

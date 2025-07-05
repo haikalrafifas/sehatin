@@ -2,6 +2,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { getCurrentUser, getUserStatus } from '../../utils/user';
+import { getOrCreateTodayQuests, updateQuestStatus } from '../../utils/quest';
 
 import TopBar from '../../components/app/layouts/topbar';
 import NavBar from '../../components/app/layouts/navbar';
@@ -44,6 +45,38 @@ const AppRouter = () => {
       }
     }
   }, [username, location, navigate]);
+  
+  const [notified, setNotified] = useState(false);
+  // Check if Notification permission is granted
+  const checkNotificationPermission = () => {
+    if ('Notification' in window && Notification.permission !== 'granted') {
+      Notification.requestPermission().then((perm) => {
+        if (perm === 'granted') {
+          triggerNotification();
+        }
+      });
+    }
+  };
+  // Function to trigger notification
+  const triggerNotification = () => {
+    const questsToday = getOrCreateTodayQuests();
+    if (  'Notification' in window && Notification.permission === 'granted' && !notified) {
+      new Notification('Hai, ini misi sehatmu hari ini!', {
+        body: questsToday[0]?.text || 'Tetap sehat ya!',
+      });
+      setNotified(true);
+    }
+  };
+  useEffect(() => {
+    if (personalizedUser) {
+      getOrCreateTodayQuests();
+      if ('Notification' in window && Notification.permission === 'default') {
+        checkNotificationPermission();
+      } else {
+        triggerNotification();
+      }
+    }
+  }, []);
 
   return isOnboarding
   ? (

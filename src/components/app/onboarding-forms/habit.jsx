@@ -26,62 +26,91 @@ const HabitForm = ({ next }) => {
   };
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Kebiasaan Sehari-hari</h2>
-      <label className="block mb-2">Tidur dari:</label>
-      <input
-        type="time"
-        value={sleepFrom}
-        onChange={(e) => setSleepFrom(e.target.value)}
-        className="input"
-        autoFocus={true}
-        required={true}
-      />
-      <label className="block mt-2">Tidur sampai:</label>
-      <input
-        type="time"
-        value={sleepTo}
-        onChange={(e) => setSleepTo(e.target.value)}
-        className="input"
-        required={true}
-      />
+    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">
+      <h2 className="text-2xl font-semibold text-center text-primary mb-6">Kebiasaan Sehari-hari</h2>
 
-      <label className="block mt-4">Apakah kamu merokok?</label>
-      <select
-        value={smoke}
-        onChange={(e) => setSmoke(e.target.value)}
-        className="input"
-      >
-        <option value="none">Tidak</option>
-        <option value="active">Aktif</option>
-      </select>
-
-      {smoke === 'active' || smoke === 'none' ? (
-        <label className="block mt-2">
+      <div className="space-y-6">
+        {/* Sleep From */}
+        <div>
+          <label htmlFor="sleepFrom" className="block text-sm font-medium text-gray-700">Tidur dari</label>
           <input
-            type="checkbox"
-            checked={passive}
-            onChange={(e) => setPassive(e.target.checked)}
+            type="time"
+            id="sleepFrom"
+            value={sleepFrom}
+            onChange={(e) => setSleepFrom(e.target.value)}
+            className="input w-full px-4 py-2 mt-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary border-gray-300"
+            required
           />
-          {' '}Sering berada dekat perokok?
-        </label>
-      ) : null}
+        </div>
 
-      <label className="block mt-4">Dalam seminggu, berapa total menit dihabiskan untuk berolahraga?</label>
-      <input
-        type="number"
-        value={exerciseDuration}
-        onChange={(e) => setExerciseDuration(e.target.value)}
-        className="input mt-2"
-        placeholder="Menit per minggu"
-      />
+        {/* Sleep To */}
+        <div>
+          <label htmlFor="sleepTo" className="block text-sm font-medium text-gray-700">Tidur sampai</label>
+          <input
+            type="time"
+            id="sleepTo"
+            value={sleepTo}
+            onChange={(e) => setSleepTo(e.target.value)}
+            className="input w-full px-4 py-2 mt-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary border-gray-300"
+            required
+          />
+        </div>
 
-      <button
-        onClick={handleNextForm}
-        className="bg-primary text-black py-2 px-4 rounded mt-4"
-      >
-        Lanjut
-      </button>
+        {/* Smoke */}
+        <div>
+          <label htmlFor="smoke" className="block text-sm font-medium text-gray-700">Apakah kamu merokok?</label>
+          <select
+            id="smoke"
+            value={smoke}
+            onChange={(e) => setSmoke(e.target.value)}
+            className="input w-full px-4 py-2 mt-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary border-gray-300"
+          >
+            <option value="none">Tidak</option>
+            <option value="active">Aktif</option>
+          </select>
+        </div>
+
+        {/* Passive Smoking */}
+        {(smoke === 'active' || smoke === 'none') && (
+          <div>
+            <label htmlFor="passive" className="block text-sm text-gray-700 mt-4">
+              <input
+                type="checkbox"
+                id="passive"
+                checked={passive}
+                onChange={(e) => setPassive(e.target.checked)}
+                className="mr-2"
+              />
+              Sering berada dekat perokok?
+            </label>
+          </div>
+        )}
+
+        {/* Exercise Duration */}
+        <div>
+          <label htmlFor="exerciseDuration" className="block text-sm font-medium text-gray-700 mt-4">
+            Dalam seminggu, berapa total menit dihabiskan untuk berolahraga?
+          </label>
+          <input
+            type="number"
+            id="exerciseDuration"
+            value={exerciseDuration}
+            onChange={(e) => setExerciseDuration(e.target.value)}
+            className="input w-full px-4 py-2 mt-2 border-2 rounded-md focus:outline-none focus:ring-2 focus:ring-primary border-gray-300"
+            placeholder="Menit per minggu"
+          />
+        </div>
+
+        {/* Next Button */}
+        <div className="mt-6 text-center">
+          <button
+            onClick={handleNextForm}
+            className="w-full py-2 px-4 bg-primary text-white font-semibold rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            Lanjut
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
