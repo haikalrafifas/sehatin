@@ -1,0 +1,60 @@
+{
+  "profile": {
+    "nickname": "",
+    "username": "",
+    "password": ""
+  },
+
+  "status": {
+    "body": {
+      "dob": "YYYY-mm-dd",
+      "weight": 0,
+      "height": 0
+    },
+    "habit": {
+      "sleepFrom": "00:00",
+      "sleepTo": "00:00",
+      "smoke": {
+        "active": true,
+        "passive": true
+      },
+      "exercise": {
+        "minutesPerWeek": 150
+      }
+    },
+    "health": {
+      "illnesses": ["illness1", "etc"]
+    }
+  },
+  
+  "progress": {
+    "YYYY-mm-dd": {
+      "body": {
+        "weight": 0,
+        "height": 0
+      },
+      "habit": {
+        "sleepFrom": "00:00",
+        "sleepTo": "00:00",
+        "smoke": {
+          "active": true,
+          "passive": true
+        },
+        "exerciseMinutesPerWeek": 150
+      }
+    }
+  },
+
+  "daily_quests": {
+    "YYYY-mm-dd": [
+      {
+        "text": "Quest #1",
+        "done": false
+      }
+    ]
+  },
+
+  "settings": {
+    "autoShowHealthAnalysisModal": true
+  }
+}
